@@ -24,7 +24,7 @@ export async function POST() {
       user: {
         client_user_id: "kabirbose", // Replace with your unique user identifier
       },
-      client_name: "Plaid API Test",
+      client_name: "Mintly Finance Tracker",
       products: [Products.Auth, Products.Transactions], // Use enum values
       country_codes: [CountryCode.Us, CountryCode.Ca], // Use enum values
       language: "en",

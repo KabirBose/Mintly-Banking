@@ -3,8 +3,8 @@ import { AccessTokenProvider } from "@/context/AccessTokenContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Plaid API Test",
-  description: "Testing out Plaid API features and implementation",
+  title: "Mintly Finance",
+  description: "A comprehensive personal finance tracker app",
 };
 
 export default function RootLayout({
