@@ -5,7 +5,7 @@ import { useAccessToken } from "@/context/AccessTokenContext";
 
 export default function FetchTransactions() {
   const [transactions, setTransactions] = useState<any[]>([]);
-  const { accessToken, setAccessToken } = useAccessToken();
+  const { accessToken } = useAccessToken();
 
   const fetchTransactions = async () => {
     if (!accessToken) return;

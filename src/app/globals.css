@@ -3,5 +3,12 @@
 @tailwind utilities;
 
 :root {
-  font-family: "Courier New", Courier, monospace;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  background-color: rgb(230, 230, 230);
+  padding: 3px;
+  color: black;
+  border-radius: 5px;
 }
