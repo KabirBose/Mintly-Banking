@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { AccessTokenProvider } from "@/context/AccessTokenContext";
-import "./globals.css";
+import "@/app/globals.css";
 
 export const metadata: Metadata = {
   title: "Mintly Finance",
