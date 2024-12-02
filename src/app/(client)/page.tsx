@@ -1,4 +1,5 @@
 import FetchBalance from "@/components/FetchBalance";
+import FetchIdentity from "@/components/FetchIdentity";
 import FetchRecurring from "@/components/FetchRecurring";
 import FetchTransactions from "@/components/FetchTransactions";
 import PlaidIntegration from "@/components/PlaidIntegration";
@@ -11,6 +12,7 @@ export default function () {
       <FetchTransactions />
       <FetchBalance />
       <FetchRecurring />
+      <FetchIdentity />
     </div>
   );
 }
