@@ -1,16 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import { useAccessToken } from "@/context/AccessTokenContext";
 
 export default function FetchRecurring() {
   const { accessToken } = useAccessToken();
-  const [transactions, setTransactions] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
 
-  const handleFetchRecurringTransactions = async () => {
+  const fetchRecurringTransactions = async () => {
     if (!accessToken) {
-      setError("Access token is required");
+      console.error("No recurring payments available");
       return;
     }
 
@@ -26,34 +23,15 @@ export default function FetchRecurring() {
       }
 
       const data = await response.json();
-      setTransactions(data.streams || []);
-      setError(null); // Clear previous errors
-    } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "An unknown error occurred"
-      );
+      console.log("Recurring Transactions:", data);
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
   return (
-    <div>
-      <button onClick={handleFetchRecurringTransactions}>
-        Get Recurring Transactions
-      </button>
-
-      {transactions && (
-        <div>
-          <h3>Recurring Transactions:</h3>
-          <ul>
-            {transactions.map((transaction: any, index: number) => (
-              <li key={index}>
-                <strong>{transaction.name}</strong> - {transaction.frequency} -
-                ${transaction.amount}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-    </div>
+    <button onClick={fetchRecurringTransactions}>
+      Fetch Recurring Transactions
+    </button>
   );
 }

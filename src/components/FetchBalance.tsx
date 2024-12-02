@@ -19,17 +19,15 @@ export default function FetchBalance() {
       });
 
       if (!response.ok) {
-        const error = await response.json();
-        console.error("Error fetching balances:", error);
-        return;
+        throw new Error("Failed to fetch balances");
       }
 
       const data = await response.json();
-      console.log("Account Balances:", data.accounts);
+      console.log("Account Balances:", data);
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
-  return <button onClick={fetchBalances}>Get Account Balances</button>;
+  return <button onClick={fetchBalances}>Fetch Account Balances</button>;
 }

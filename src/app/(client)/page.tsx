@@ -6,7 +6,7 @@ import PlaidIntegration from "@/components/PlaidIntegration";
 
 export default function () {
   return (
-    <div>
+    <div className="flex flex-col gap-5">
       <h1>Mintly</h1>
       <PlaidIntegration />
       <FetchTransactions />

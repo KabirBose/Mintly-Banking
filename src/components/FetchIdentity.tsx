@@ -1,16 +1,13 @@
 "use client";
 
-import { useState } from "react";
 import { useAccessToken } from "@/context/AccessTokenContext";
 
 export default function FetchIdentity() {
   const { accessToken } = useAccessToken();
-  const [identity, setIdentity] = useState<any>(null);
-  const [error, setError] = useState<string | null>(null);
 
-  const handleFetchIdentityData = async () => {
+  const fetchIdentityData = async () => {
     if (!accessToken) {
-      setError("Access token is required");
+      console.error("No access token available");
       return;
     }
 
@@ -26,27 +23,11 @@ export default function FetchIdentity() {
       }
 
       const data = await response.json();
-      setIdentity(data);
-      setError(null); // Clear previous errors
-    } catch (err) {
-      setError(
-        err instanceof Error ? err.message : "An unknown error occurred"
-      );
+      console.log("Identity Data:", data);
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
 
-  return (
-    <div>
-      <button onClick={handleFetchIdentityData}>Get Identity Data</button>
-
-      {error && <p style={{ color: "red" }}>{error}</p>}
-
-      {identity && (
-        <div>
-          <h3>User Identity:</h3>
-          <pre>{JSON.stringify(identity, null, 2)}</pre>
-        </div>
-      )}
-    </div>
-  );
+  return <button onClick={fetchIdentityData}>Fetch Identity Data</button>;
 }
