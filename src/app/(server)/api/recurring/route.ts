@@ -11,7 +11,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // Fetch recurring transactions
     const response = await plaidClient.transactionsRecurringGet({
       access_token,
     });

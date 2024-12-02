@@ -11,7 +11,6 @@ export async function POST(req: Request) {
       );
     }
 
-    // Fetch identity data
     const response = await plaidClient.identityGet({
       access_token,
     });

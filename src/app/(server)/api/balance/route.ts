@@ -15,9 +15,8 @@ export async function POST(req: Request) {
 
     return new Response(JSON.stringify(response.data), { status: 200 });
   } catch (err) {
-    // Narrowing the type of 'err'
     if (err instanceof Error) {
-      console.error("Plaid error:", err.message); // Access 'message' safely
+      console.error("Plaid error:", err.message);
       return new Response(JSON.stringify({ error: err.message }), {
         status: 500,
       });
