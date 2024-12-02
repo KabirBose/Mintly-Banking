@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { usePlaidLink } from "react-plaid-link";
 import { useAccessToken } from "@/context/AccessTokenContext";
 
-export default function PlaidIntegration() {
+export default function PlaidLink() {
   const [linkToken, setLinkToken] = useState<string | null>(null);
   const { accessToken, setAccessToken } = useAccessToken();
 
@@ -41,11 +41,11 @@ export default function PlaidIntegration() {
     <div>
       {!accessToken ? (
         <button onClick={() => open()} disabled={!ready}>
-          Link Account
+          Plaid Link
         </button>
       ) : (
         <>
-          <p>Account linked successfully!</p>
+          <p>Linked successfully</p>
         </>
       )}
     </div>
