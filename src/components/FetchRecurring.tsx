@@ -30,8 +30,10 @@ export default function FetchRecurring() {
   };
 
   return (
-    <button onClick={fetchRecurringTransactions}>
-      Fetch Recurring Transactions
-    </button>
+    <div>
+      <button onClick={fetchRecurringTransactions}>
+        Fetch Recurring Transactions
+      </button>
+    </div>
   );
 }

@@ -29,5 +29,9 @@ export default function FetchTransactions() {
     }
   };
 
-  return <button onClick={fetchTransactions}>Fetch Transactions</button>;
+  return (
+    <div>
+      <button onClick={fetchTransactions}>Fetch Transactions</button>
+    </div>
+  );
 }

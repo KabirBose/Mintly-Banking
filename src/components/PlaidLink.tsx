@@ -3,10 +3,12 @@
 import { useEffect, useState } from "react";
 import { usePlaidLink } from "react-plaid-link";
 import { useAccessToken } from "@/context/AccessTokenContext";
+import { useRouter } from "next/navigation";
 
 export default function PlaidLink() {
   const [linkToken, setLinkToken] = useState<string | null>(null);
-  const { accessToken, setAccessToken } = useAccessToken();
+  const { setAccessToken } = useAccessToken();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchLinkToken = async () => {
@@ -28,6 +30,7 @@ export default function PlaidLink() {
     });
     const data = await response.json();
     setAccessToken(data.access_token);
+    router.replace("/dashboard");
   };
 
   const { open, ready } = usePlaidLink({
@@ -35,19 +38,11 @@ export default function PlaidLink() {
     onSuccess,
   });
 
-  if (!linkToken) return <p>Loading...</p>;
-
   return (
     <div>
-      {!accessToken ? (
-        <button onClick={() => open()} disabled={!ready}>
-          Plaid Link
-        </button>
-      ) : (
-        <>
-          <p>Linked successfully</p>
-        </>
-      )}
+      <button onClick={() => open()} disabled={!ready}>
+        Get Started
+      </button>
     </div>
   );
 }

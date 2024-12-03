@@ -29,5 +29,9 @@ export default function FetchIdentity() {
     }
   };
 
-  return <button onClick={fetchIdentityData}>Fetch Identity Data</button>;
+  return (
+    <div>
+      <button onClick={fetchIdentityData}>Fetch Identity Data</button>
+    </div>
+  );
 }

@@ -29,5 +29,9 @@ export default function FetchBalance() {
     }
   };
 
-  return <button onClick={fetchBalances}>Fetch Account Balances</button>;
+  return (
+    <div>
+      <button onClick={fetchBalances}>Fetch Account Balances</button>
+    </div>
+  );
 }
