@@ -27,7 +27,7 @@ export default function Balances() {
       }
 
       const data = await response.json();
-      // console.log(data);
+      console.log(data);
       setBalances(data);
     } catch (error) {
       console.error("Error:", error);
@@ -40,17 +40,25 @@ export default function Balances() {
 
   return (
     <div>
-      <p>Account Balances</p>
-      {balances ? (
-        <ul>
+      <h3 className="text-center mb-5">Account Balances</h3>
+
+      {balances && (
+        <div className="flex flex-col justify-center items-center gap-5 bg-gray-900 p-5 rounded-md w-[100%]">
           {balances.accounts.map((account: any, i: number) => (
-            <li key={i}>
-              {account.account_id}: {account.name} {account.mask}
-            </li>
+            <div
+              key={account.account_id}
+              className="w-full bg-gray-800 p-5 rounded-md"
+            >
+              <p>
+                {account.name} ({account.mask})
+              </p>
+              <p>
+                ${account.balances.available}{" "}
+                {account.balances.iso_currency_code}
+              </p>
+            </div>
           ))}
-        </ul>
-      ) : (
-        <p>Loading...</p>
+        </div>
       )}
     </div>
   );

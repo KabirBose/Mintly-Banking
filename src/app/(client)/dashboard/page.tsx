@@ -1,7 +1,7 @@
-import Balances from "@/components/Balances";
-import Identity from "@/components/Identity";
-import Recurring from "@/components/Recurring";
-import Transactions from "@/components/Transactions";
+import Balances from "@/components/Plaid/Balances";
+import Identity from "@/components/Plaid/Identity";
+import Recurring from "@/components/Plaid/Recurring";
+import Transactions from "@/components/Plaid/Transactions";
 
 export default function () {
   return (

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { usePlaidLink } from "react-plaid-link";
 import { useRouter } from "next/navigation";
 
-export default function PlaidLink() {
+export default function Link() {
   const [linkToken, setLinkToken] = useState<string | null>(null);
   const router = useRouter();
 
