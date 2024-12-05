@@ -1,13 +1,13 @@
 "use client";
 
-import { useAccessToken } from "@/context/AccessTokenContext";
-
 export default function FetchRecurring() {
-  const { accessToken } = useAccessToken();
+  const accessToken = localStorage.getItem("access_token")
+    ? JSON.parse(localStorage.getItem("access_token") as string)
+    : null;
 
   const fetchRecurringTransactions = async () => {
     if (!accessToken) {
-      console.error("No recurring payments available");
+      console.error("No access token available");
       return;
     }
 

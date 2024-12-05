@@ -1,9 +1,11 @@
 "use client";
 
-import { useAccessToken } from "@/context/AccessTokenContext";
+import { useEffect } from "react";
 
 export default function FetchBalance() {
-  const { accessToken } = useAccessToken();
+  const accessToken = localStorage.getItem("access_token")
+    ? JSON.parse(localStorage.getItem("access_token") as string)
+    : null;
 
   const fetchBalances = async () => {
     if (!accessToken) {
@@ -23,15 +25,20 @@ export default function FetchBalance() {
       }
 
       const data = await response.json();
-      console.log("Account Balances:", data);
+      console.log(data);
+      return data;
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
+  useEffect(() => {
+    fetchBalances();
+  });
+
   return (
     <div>
-      <button onClick={fetchBalances}>Fetch Account Balances</button>
+      <p>Account Balances</p>
     </div>
   );
 }

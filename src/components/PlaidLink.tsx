@@ -2,12 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { usePlaidLink } from "react-plaid-link";
-import { useAccessToken } from "@/context/AccessTokenContext";
 import { useRouter } from "next/navigation";
 
 export default function PlaidLink() {
   const [linkToken, setLinkToken] = useState<string | null>(null);
-  const { setAccessToken } = useAccessToken();
   const router = useRouter();
 
   useEffect(() => {
@@ -29,7 +27,7 @@ export default function PlaidLink() {
       headers: { "Content-Type": "application/json" },
     });
     const data = await response.json();
-    setAccessToken(data.access_token);
+    localStorage.setItem("access_token", JSON.stringify(data.access_token));
     router.replace("/dashboard");
   };
 

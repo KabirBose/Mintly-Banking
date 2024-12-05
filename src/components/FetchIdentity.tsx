@@ -1,9 +1,9 @@
 "use client";
 
-import { useAccessToken } from "@/context/AccessTokenContext";
-
 export default function FetchIdentity() {
-  const { accessToken } = useAccessToken();
+  const accessToken = localStorage.getItem("access_token")
+    ? JSON.parse(localStorage.getItem("access_token") as string)
+    : null;
 
   const fetchIdentityData = async () => {
     if (!accessToken) {

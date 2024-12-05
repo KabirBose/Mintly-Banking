@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { AccessTokenProvider } from "@/context/AccessTokenContext";
 import { Nunito } from "next/font/google";
 import "@/app/globals.css";
 
@@ -17,9 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={nunito.className}>
-        <AccessTokenProvider>{children}</AccessTokenProvider>
-      </body>
+      <body className={nunito.className}>{children}</body>
     </html>
   );
 }
