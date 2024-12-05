@@ -1,29 +1,29 @@
 "use client";
 
-export default function FetchIdentity() {
+export default function Transactions() {
   const accessToken = localStorage.getItem("access_token")
     ? JSON.parse(localStorage.getItem("access_token") as string)
     : null;
 
-  const fetchIdentityData = async () => {
+  const fetchTransactions = async () => {
     if (!accessToken) {
       console.error("No access token available");
       return;
     }
 
     try {
-      const response = await fetch("/api/identity", {
+      const response = await fetch("/api/transactions", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ access_token: accessToken }),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to fetch identity data");
+        throw new Error("Failed to fetch transactions");
       }
 
       const data = await response.json();
-      console.log("Identity Data:", data);
+      console.log("Transactions:", data);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -31,7 +31,7 @@ export default function FetchIdentity() {
 
   return (
     <div>
-      <button onClick={fetchIdentityData}>Fetch Identity Data</button>
+      <button onClick={fetchTransactions}>Fetch Transactions</button>
     </div>
   );
 }

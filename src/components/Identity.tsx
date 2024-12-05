@@ -1,29 +1,29 @@
 "use client";
 
-export default function FetchRecurring() {
+export default function Identity() {
   const accessToken = localStorage.getItem("access_token")
     ? JSON.parse(localStorage.getItem("access_token") as string)
     : null;
 
-  const fetchRecurringTransactions = async () => {
+  const fetchIdentityData = async () => {
     if (!accessToken) {
       console.error("No access token available");
       return;
     }
 
     try {
-      const response = await fetch("/api/recurring", {
+      const response = await fetch("/api/identity", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ access_token: accessToken }),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to fetch recurring transactions");
+        throw new Error("Failed to fetch identity data");
       }
 
       const data = await response.json();
-      console.log("Recurring Transactions:", data);
+      console.log("Identity Data:", data);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -31,9 +31,7 @@ export default function FetchRecurring() {
 
   return (
     <div>
-      <button onClick={fetchRecurringTransactions}>
-        Fetch Recurring Transactions
-      </button>
+      <button onClick={fetchIdentityData}>Fetch Identity Data</button>
     </div>
   );
 }

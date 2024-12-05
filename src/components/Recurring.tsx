@@ -1,44 +1,39 @@
 "use client";
 
-import { useEffect } from "react";
-
-export default function FetchBalance() {
+export default function Recurring() {
   const accessToken = localStorage.getItem("access_token")
     ? JSON.parse(localStorage.getItem("access_token") as string)
     : null;
 
-  const fetchBalances = async () => {
+  const fetchRecurringTransactions = async () => {
     if (!accessToken) {
       console.error("No access token available");
       return;
     }
 
     try {
-      const response = await fetch("/api/balance", {
+      const response = await fetch("/api/recurring", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ access_token: accessToken }),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to fetch balances");
+        throw new Error("Failed to fetch recurring transactions");
       }
 
       const data = await response.json();
-      console.log(data);
-      return data;
+      console.log("Recurring Transactions:", data);
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
-  useEffect(() => {
-    fetchBalances();
-  });
-
   return (
     <div>
-      <p>Account Balances</p>
+      <button onClick={fetchRecurringTransactions}>
+        Fetch Recurring Transactions
+      </button>
     </div>
   );
 }

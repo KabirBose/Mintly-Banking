@@ -1,37 +1,44 @@
 "use client";
 
-export default function FetchTransactions() {
+import { useEffect } from "react";
+
+export default function Balances() {
   const accessToken = localStorage.getItem("access_token")
     ? JSON.parse(localStorage.getItem("access_token") as string)
     : null;
 
-  const fetchTransactions = async () => {
+  const fetchBalances = async () => {
     if (!accessToken) {
       console.error("No access token available");
       return;
     }
 
     try {
-      const response = await fetch("/api/transactions", {
+      const response = await fetch("/api/balance", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ access_token: accessToken }),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to fetch transactions");
+        throw new Error("Failed to fetch balances");
       }
 
       const data = await response.json();
-      console.log("Transactions:", data);
+      console.log(data);
+      return data;
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
+  useEffect(() => {
+    fetchBalances();
+  });
+
   return (
     <div>
-      <button onClick={fetchTransactions}>Fetch Transactions</button>
+      <p>Account Balances</p>
     </div>
   );
 }
