@@ -1,8 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Balances() {
+  const [balances, setBalances] = useState<any>(null);
+
   const accessToken = localStorage.getItem("access_token")
     ? JSON.parse(localStorage.getItem("access_token") as string)
     : null;
@@ -25,8 +27,8 @@ export default function Balances() {
       }
 
       const data = await response.json();
-      console.log(data);
-      return data;
+      // console.log(data);
+      setBalances(data);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -34,11 +36,22 @@ export default function Balances() {
 
   useEffect(() => {
     fetchBalances();
-  });
+  }, []);
 
   return (
     <div>
       <p>Account Balances</p>
+      {balances ? (
+        <ul>
+          {balances.accounts.map((account: any, i: number) => (
+            <li key={i}>
+              {account.account_id}: {account.name} {account.mask}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 }
