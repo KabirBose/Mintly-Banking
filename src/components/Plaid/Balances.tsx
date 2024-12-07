@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Balance from "../UI/Balance";
 
 export default function Balances() {
   const [balances, setBalances] = useState<any>(null);
@@ -27,7 +28,6 @@ export default function Balances() {
       }
 
       const data = await response.json();
-      console.log(data);
       setBalances(data);
     } catch (error) {
       console.error("Error:", error);
@@ -43,20 +43,15 @@ export default function Balances() {
       <h3 className="text-center mb-5">Account Balances</h3>
 
       {balances && (
-        <div className="flex flex-col justify-center items-center gap-5 bg-gray-900 p-5 rounded-md w-[100%]">
-          {balances.accounts.map((account: any, i: number) => (
-            <div
+        <div className="flex flex-col justify-center items-center gap-5 bg-gray-900 p-5 rounded-md w-full">
+          {balances.accounts.map((account: any) => (
+            <Balance
               key={account.account_id}
-              className="w-full bg-gray-800 p-5 rounded-md"
-            >
-              <p>
-                {account.name} ({account.mask})
-              </p>
-              <p>
-                ${account.balances.available}{" "}
-                {account.balances.iso_currency_code}
-              </p>
-            </div>
+              account={account.name}
+              mask={account.mask}
+              amount={account.balances.available}
+              currency={account.balances.iso_currency_code}
+            />
           ))}
         </div>
       )}
