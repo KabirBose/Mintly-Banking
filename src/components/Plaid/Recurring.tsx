@@ -44,7 +44,7 @@ export default function Recurring() {
       <h3 className="text-center mb-2">Recurring</h3>
 
       {recurring && (
-        <div className="flex flex-col justify-center items-center gap-5 bg-gray-900 p-5 rounded-md w-full">
+        <div className="flex flex-col justify-center items-center gap-5 bg-peach p-5 rounded-md w-full">
           {recurring.inflow_streams.map((transaction: any) => (
             <Transaction
               key={transaction.transaction_ids[0]}

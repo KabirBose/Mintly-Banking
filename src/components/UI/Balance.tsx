@@ -7,7 +7,7 @@ interface Props {
 
 export default function Balance({ account, mask, amount, currency }: Props) {
   return (
-    <div className="w-full bg-gray-800 p-5 rounded-md">
+    <div className="w-full bg-tomato text-platinum p-5 rounded-md">
       <p>
         {account} ({mask})
       </p>

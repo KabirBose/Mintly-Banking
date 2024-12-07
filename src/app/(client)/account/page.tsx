@@ -4,7 +4,7 @@ import Recurring from "@/components/Plaid/Recurring";
 
 export default function () {
   return (
-    <div className="flex flex-col gap-4 justify-center items-center h-[100vh]">
+    <div className="flex flex-col gap-12 justify-center items-center min-h-[100vh]">
       <Identity />
       <Balances />
       <Recurring />

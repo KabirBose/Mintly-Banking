@@ -4,8 +4,8 @@
 
 :root {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #030712;
-  color: white;
+  background-color: #ede6e3;
+  color: #36382e;
 }
 
 h1 {
@@ -22,8 +22,8 @@ h3 {
 }
 
 button {
-  color: #030712;
-  background-color: #5eead4;
+  color: #36382e;
+  background-color: #f06449;
   padding: 5px;
   border-radius: 5px;
 }
