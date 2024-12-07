@@ -27,6 +27,7 @@ export default function Link() {
       headers: { "Content-Type": "application/json" },
     });
     const data = await response.json();
+
     localStorage.setItem("access_token", JSON.stringify(data.access_token));
     router.replace("/dashboard");
   };

@@ -39,20 +39,8 @@ export default function Identity() {
   }, []);
 
   return (
-    <div>
-      <h3 className="text-center mb-2">Identity</h3>
-
-      {identity && (
-        <div>
-          <div className="flex flex-col justify-center items-center gap-5 bg-gray-900 p-5 rounded-md w-full">
-            {identity.accounts.map((account: any) => (
-              <div key={account.account_id}>
-                <p>{account.owners[0].names}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
+    <div className="text-center">
+      {identity && <h3>Welcome, {identity.accounts[0].owners[0].names}!</h3>}
     </div>
   );
 }
