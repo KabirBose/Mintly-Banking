@@ -9,6 +9,7 @@ export default function () {
       <h1>Dashboard</h1>
       <Identity />
       <Balances />
+      <Recurring />
     </div>
   );
 }

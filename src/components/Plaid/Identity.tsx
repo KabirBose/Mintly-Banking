@@ -27,7 +27,6 @@ export default function Identity() {
       }
 
       const data = await response.json();
-      console.log("Identity", data);
       setIdentity(data);
     } catch (error) {
       console.error("Error:", error);

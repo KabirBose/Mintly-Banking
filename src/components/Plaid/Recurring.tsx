@@ -1,6 +1,10 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 export default function Recurring() {
+  const [recurring, setRecurring] = useState<any>(null);
+
   const accessToken = localStorage.getItem("access_token")
     ? JSON.parse(localStorage.getItem("access_token") as string)
     : null;
@@ -24,16 +28,39 @@ export default function Recurring() {
 
       const data = await response.json();
       console.log("Recurring Transactions:", data);
+      setRecurring(data);
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
+  useEffect(() => {
+    fetchRecurringTransactions();
+  }, []);
+
   return (
     <div>
-      <button onClick={fetchRecurringTransactions}>
-        Fetch Recurring Transactions
-      </button>
+      <h3 className="text-center mb-2">Recurring</h3>
+
+      {recurring && (
+        <div>
+          {recurring.inflow_streams.map((transaction: any) => (
+            <p key={transaction.transaction_ids[1]}>
+              {transaction.description}
+            </p>
+          ))}
+        </div>
+      )}
+
+      {recurring && (
+        <div>
+          {recurring.outflow_streams.map((transaction: any) => (
+            <p key={transaction.transaction_ids[1]}>
+              {transaction.description}
+            </p>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
