@@ -17,7 +17,7 @@ export default function Balances() {
     }
 
     try {
-      const response = await fetch("/api/identity", {
+      const response = await fetch("/api/account", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ access_token: accessToken }),
