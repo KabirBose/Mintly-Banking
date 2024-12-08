@@ -38,8 +38,8 @@ export default function Identity() {
   }, []);
 
   return (
-    <div className="text-center">
-      {identity && <h3>Welcome, {identity.accounts[0].owners[0].names}!</h3>}
+    <div className="text-center p-5">
+      {identity && <h3>hey, {identity.accounts[0].owners[0].names}</h3>}
     </div>
   );
 }

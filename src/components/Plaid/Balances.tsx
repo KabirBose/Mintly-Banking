@@ -40,7 +40,7 @@ export default function Balances() {
 
   return (
     <div>
-      <h3 className="text-center mb-2">Account Balances</h3>
+      <h3 className="text-center mb-3">accounts</h3>
 
       {balances && (
         <div className="flex flex-col justify-center items-center gap-5 bg-peach p-5 rounded-md w-full">
