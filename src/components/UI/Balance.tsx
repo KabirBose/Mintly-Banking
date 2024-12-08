@@ -5,9 +5,16 @@ interface Props {
   mask: string;
   amount: number;
   currency: string;
+  accountID: string;
 }
 
-export default function Balance({ account, mask, amount, currency }: Props) {
+export default function Balance({
+  account,
+  mask,
+  amount,
+  currency,
+  accountID,
+}: Props) {
   return (
     <div className="w-full bg-tomato text-platinum p-5 rounded-md flex justify-around items-center">
       <div className="w-1/2">
@@ -19,7 +26,7 @@ export default function Balance({ account, mask, amount, currency }: Props) {
         </p>
       </div>
 
-      <Link href="/">→</Link>
+      <Link href={`account/${accountID}`}>→</Link>
     </div>
   );
 }

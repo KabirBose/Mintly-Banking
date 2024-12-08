@@ -51,6 +51,7 @@ export default function Balances() {
               mask={account.mask}
               amount={account.balances.available}
               currency={account.balances.iso_currency_code}
+              accountID={account.account_id}
             />
           ))}
         </div>
