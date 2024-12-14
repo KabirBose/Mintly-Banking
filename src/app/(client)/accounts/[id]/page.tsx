@@ -47,10 +47,23 @@ export default function () {
   }, []);
 
   return (
-    <div>
-      <p>Current ID: {id}</p>
+    <div className="min-h-[100vh]">
+      <h3 className="text-center mb-3">transactions</h3>
+
       {account?.map((transaction: any) => (
-        <p key={transaction.transaction_id}>{transaction.name}</p>
+        <div key={transaction.transaction_id} className="bg-tomato p-5">
+          <div className="flex justify-between items-center w-full">
+            <p className="font-bold">{transaction.name}</p>
+            <p className="text-lg font-bold flex flex-col justify-center items-center">
+              ${transaction.amount}
+            </p>
+          </div>
+          <div className="flex gap-1">
+            <p>{transaction.merchant_name}</p>
+            <p>({transaction.website}) </p>
+          </div>
+          <p>{transaction.date}</p>
+        </div>
       ))}
     </div>
   );
