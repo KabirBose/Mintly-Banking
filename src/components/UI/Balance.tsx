@@ -26,7 +26,7 @@ export default function Balance({
         </p>
       </div>
 
-      <Link href={`account/${accountID}`}>→</Link>
+      <Link href={`accounts/${accountID}`}>→</Link>
     </div>
   );
 }

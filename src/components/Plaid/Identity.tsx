@@ -39,7 +39,7 @@ export default function Identity() {
 
   return (
     <div className="text-center p-5">
-      {identity && <h3>hey, {identity.accounts[0].owners[0].names}</h3>}
+      {identity && <h3>hello, {identity.accounts[0].owners[0].names}</h3>}
     </div>
   );
 }
