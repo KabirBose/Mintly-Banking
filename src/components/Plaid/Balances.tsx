@@ -29,13 +29,18 @@ export default function Balances() {
       }
 
       const data = await response.json();
+      console.log(data.accounts);
       setBalances(data);
 
-      // setTotal(
-      //   data
-      //     ?.reduce((val: any, transaction: any) => val + transaction.amount, 0)
-      //     .toFixed(2)
-      // );
+      setTotal(
+        data?.accounts
+          .reduce(
+            (val: any, transaction: any) =>
+              val + transaction.balances.available,
+            0
+          )
+          .toFixed(2)
+      );
     } catch (error) {
       console.error("Error:", error);
     }
@@ -47,8 +52,8 @@ export default function Balances() {
 
   return (
     <div>
-      <h3 className="text-center mb-3">Accounts</h3>
-      <h3>Total Balance: {}</h3>
+      <h3 className="text-center mb-5">Accounts</h3>
+      <h4 className="text-center mb-3">Total Balance: ${total}</h4>
 
       {balances && (
         <div className="flex flex-col justify-center items-center gap-5 bg-peach p-5 rounded-md w-full">
