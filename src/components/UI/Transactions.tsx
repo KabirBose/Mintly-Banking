@@ -4,7 +4,7 @@ interface Props {
 
 export default function Transactions({ transactions }: Props) {
   return (
-    <div>
+    <div className="p-5">
       <h3 className="text-center mb-2">Transactions</h3>
       {transactions?.map((transaction: any) => (
         <div
@@ -13,8 +13,8 @@ export default function Transactions({ transactions }: Props) {
         >
           <div className="flex justify-between items-center w-full">
             <p className="font-bold">{transaction.name}</p>
-            <p className="text-lg font-bold flex flex-col justify-center items-center">
-              ${transaction.amount}
+            <p className="font-bold flex flex-col justify-center items-center">
+              ${transaction.amount.toFixed(2)}
             </p>
           </div>
           <div className="flex gap-1">
