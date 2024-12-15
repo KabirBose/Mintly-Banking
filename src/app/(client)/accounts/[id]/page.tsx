@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export default function () {
+  const [transactions, setTransactions] = useState<any>(null);
   const [account, setAccount] = useState<any>(null);
   const { id } = useParams();
 
@@ -29,11 +30,11 @@ export default function () {
       }
 
       const data = await response.json();
+
       setAccount(
-        data.transactions.filter((account: any) => account.account_id === id) ||
-          null
+        data.accounts.find((account: any) => account.account_id === id) || null
       );
-      console.log(
+      setTransactions(
         data.transactions.filter((account: any) => account.account_id === id) ||
           null
       );
@@ -48,10 +49,29 @@ export default function () {
 
   return (
     <div className="min-h-[100vh]">
-      <h3 className="text-center mb-3">transactions</h3>
+      <div className="min-h-[30vh] flex flex-col justify-center items-center">
+        <h3>
+          {account?.name} ({account?.mask})
+        </h3>
+        <h4 className="text-center">{account?.official_name}</h4>
+        <h4 className="mt-5">Balance: ${account?.balances.available}</h4>
+        <h4>
+          Spent: $
+          {transactions
+            ?.reduce(
+              (val: any, transaction: any) => val + transaction.amount,
+              0
+            )
+            .toFixed(2)}
+        </h4>
+      </div>
 
-      {account?.map((transaction: any) => (
-        <div key={transaction.transaction_id} className="bg-tomato p-5">
+      <h3 className="text-center mb-3">Transactions</h3>
+      {transactions?.map((transaction: any) => (
+        <div
+          key={transaction.transaction_id}
+          className="bg-tomato p-5 border-peach border-4 rounded-lg mb-2"
+        >
           <div className="flex justify-between items-center w-full">
             <p className="font-bold">{transaction.name}</p>
             <p className="text-lg font-bold flex flex-col justify-center items-center">
@@ -59,8 +79,9 @@ export default function () {
             </p>
           </div>
           <div className="flex gap-1">
-            <p>{transaction.merchant_name}</p>
-            <p>({transaction.website}) </p>
+            <p>
+              {transaction.merchant_name} - {transaction.website}
+            </p>
           </div>
           <p>{transaction.date}</p>
         </div>

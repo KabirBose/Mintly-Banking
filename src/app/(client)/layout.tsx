@@ -6,7 +6,7 @@ const nunito = Nunito({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Mintly Finance",
-  description: "A comprehensive personal finance tracker app",
+  description: "A comprehensive personal finance app",
 };
 
 export default function RootLayout({

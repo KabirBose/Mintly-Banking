@@ -5,6 +5,7 @@ import Balance from "../UI/Balance";
 
 export default function Balances() {
   const [balances, setBalances] = useState<any>(null);
+  const [total, setTotal] = useState<any>(0);
 
   const accessToken = localStorage.getItem("access_token")
     ? JSON.parse(localStorage.getItem("access_token") as string)
@@ -29,6 +30,12 @@ export default function Balances() {
 
       const data = await response.json();
       setBalances(data);
+
+      // setTotal(
+      //   data
+      //     ?.reduce((val: any, transaction: any) => val + transaction.amount, 0)
+      //     .toFixed(2)
+      // );
     } catch (error) {
       console.error("Error:", error);
     }
@@ -40,7 +47,8 @@ export default function Balances() {
 
   return (
     <div>
-      <h3 className="text-center mb-3">accounts</h3>
+      <h3 className="text-center mb-3">Accounts</h3>
+      <h3>Total Balance: {}</h3>
 
       {balances && (
         <div className="flex flex-col justify-center items-center gap-5 bg-peach p-5 rounded-md w-full">
