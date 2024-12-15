@@ -41,6 +41,26 @@ export default function Recurring() {
   return (
     <div>
       <h3 className="text-center mb-2">Recurring</h3>
+
+      {recurring?.inflow_streams.map((transaction: any) => (
+        <div
+          key={transaction.transaction_ids[0]}
+          className="bg-tomato p-5 border-peach border-4 rounded-lg mb-2"
+        >
+          <div className="flex justify-between items-center w-full">
+            <p className="font-bold">{transaction.description}</p>
+            <p className="text-lg font-bold flex flex-col justify-center items-center">
+              ${transaction.average_amount.amount}
+            </p>
+          </div>
+          <div className="flex gap-1">
+            <p>
+              {transaction.merchant_name} - {transaction.predicted_next_date}
+            </p>
+          </div>
+          <p>{transaction.date}</p>
+        </div>
+      ))}
     </div>
   );
 }
