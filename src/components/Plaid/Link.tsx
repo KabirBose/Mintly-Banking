@@ -40,7 +40,7 @@ export default function Link() {
   return (
     <div>
       <button onClick={() => open()} disabled={!ready}>
-        login
+        Login
       </button>
     </div>
   );

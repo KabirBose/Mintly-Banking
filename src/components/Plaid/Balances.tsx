@@ -6,6 +6,7 @@ import Balance from "../UI/Balance";
 export default function Balances() {
   const [balances, setBalances] = useState<any>(null);
   const [total, setTotal] = useState<any>(0);
+  const [accounts, setAccounts] = useState<any>(null);
 
   const accessToken = localStorage.getItem("access_token")
     ? JSON.parse(localStorage.getItem("access_token") as string)
@@ -29,9 +30,9 @@ export default function Balances() {
       }
 
       const data = await response.json();
-      console.log(data.accounts);
-      setBalances(data);
 
+      setBalances(data);
+      setAccounts(data.accounts.length);
       setTotal(
         data?.accounts
           .reduce(
@@ -52,9 +53,7 @@ export default function Balances() {
 
   return (
     <div>
-      <h3 className="text-center mb-5">Accounts</h3>
-      <h4 className="text-center mb-3">Total Balance: ${total}</h4>
-
+      <h3 className="text-center mb-3">My Accounts</h3>
       {balances && (
         <div className="flex flex-col justify-center items-center gap-5 bg-peach p-5 rounded-md w-full">
           {balances.accounts.map((account: any) => (
@@ -69,6 +68,8 @@ export default function Balances() {
           ))}
         </div>
       )}
+      <h4 className="text-center mt-5">Total: ${total}</h4>
+      <h4 className="text-center">Accounts: {accounts}</h4>
     </div>
   );
 }

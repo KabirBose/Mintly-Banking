@@ -50,10 +50,13 @@ export default function () {
   return (
     <div className="min-h-[100vh]">
       <div className="min-h-[30vh] flex flex-col justify-center items-center">
-        <h3>
-          {account?.name} ({account?.mask})
-        </h3>
-        <h4 className="text-center">{account?.official_name}</h4>
+        <div className="bg-skyblue p-5 rounded-md w-3/4">
+          <h3 className="text-center">
+            {account?.name} ({account?.mask})
+          </h3>
+          <h4 className="text-center">{account?.official_name}</h4>
+        </div>
+
         <h4 className="mt-5">Balance: ${account?.balances.available}</h4>
         <h4>
           Spent: $
@@ -66,7 +69,7 @@ export default function () {
         </h4>
       </div>
 
-      <h3 className="text-center mb-3">Transactions</h3>
+      <h3 className="text-center mb-2">Transactions</h3>
       {transactions?.map((transaction: any) => (
         <div
           key={transaction.transaction_id}
