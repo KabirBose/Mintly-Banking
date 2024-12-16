@@ -8,7 +8,7 @@ interface Props {
   accountID: string;
 }
 
-export default function Balance({
+export default function Account({
   account,
   mask,
   amount,
