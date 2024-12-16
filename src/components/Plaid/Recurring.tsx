@@ -28,7 +28,7 @@ export default function Recurring() {
       }
 
       const data = await response.json();
-      console.log("Recurring Transactions:", data);
+      console.log(data);
       setRecurring(data);
     } catch (error) {
       console.error("Error:", error);

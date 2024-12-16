@@ -5,7 +5,7 @@ import Account from "../UI/Account";
 
 export default function Accounts() {
   const [balances, setBalances] = useState<any>(null);
-  const [total, setTotal] = useState<any>(0);
+  const [total, setTotal] = useState<number>(0);
   const [accounts, setAccounts] = useState<any>(null);
 
   const accessToken = localStorage.getItem("access_token")

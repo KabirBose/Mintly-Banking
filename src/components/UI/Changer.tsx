@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Accounts from "@/components/Plaid/Accounts";
 import Recurring from "@/components/Plaid/Recurring";
 
 export default function Changer() {
-  const [component, setComponent] = useState<any>(<Accounts />);
-  const [btnText, setBtnText] = useState("Recurring");
+  const [component, setComponent] = useState<React.ReactNode>(<Accounts />);
+  const [btnText, setBtnText] = useState<string>("Recurring");
 
   const handleClick = () => {
     if (btnText === "Recurring") {

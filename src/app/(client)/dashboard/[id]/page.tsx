@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
-import Transactions from "@/components/UI/Transactions";
+import Transaction from "@/components/UI/Transaction";
 
 export default function () {
   const [transactions, setTransactions] = useState<any>(null);
@@ -70,7 +70,21 @@ export default function () {
         </h4>
       </div>
 
-      <Transactions transactions={transactions} />
+      {/* <Transactions transactions={transactions} /> */}
+
+      <div className="p-5">
+        <h3 className="text-center mb-2">Transactions</h3>
+        {transactions?.length === 0 && (
+          <h4 className="text-center mt-12">No transactions found</h4>
+        )}
+
+        {transactions?.map((transaction: any) => (
+          <Transaction
+            transaction={transaction}
+            key={transaction.transaction_id}
+          />
+        ))}
+      </div>
     </div>
   );
 }
