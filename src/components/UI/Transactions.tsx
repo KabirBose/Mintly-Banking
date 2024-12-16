@@ -6,6 +6,9 @@ export default function Transactions({ transactions }: Props) {
   return (
     <div className="p-5">
       <h3 className="text-center mb-2">Transactions</h3>
+      {transactions?.length === 0 && (
+        <h4 className="text-center mt-12">No transactions found</h4>
+      )}
       {transactions?.map((transaction: any) => (
         <div
           key={transaction.transaction_id}

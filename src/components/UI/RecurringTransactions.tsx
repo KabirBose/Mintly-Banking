@@ -12,11 +12,10 @@ export default function RecurringTransactions({ transaction }: Props) {
         </p>
       </div>
 
-      <div className="flex gap-1">
-        <p>
-          {transaction.merchant_name} - {transaction.predicted_next_date}
-        </p>
-        <p>{transaction.last_date}</p>
+      <div className="flex flex-col">
+        <p>{transaction.merchant_name}</p>
+        <p>Last payment:{transaction.last_date}</p>
+        <p>Next payment: {transaction.predicted_next_date}</p>
       </div>
     </div>
   );
