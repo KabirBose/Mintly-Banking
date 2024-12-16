@@ -29,7 +29,7 @@ export default function Link() {
     const data = await response.json();
 
     localStorage.setItem("access_token", JSON.stringify(data.access_token));
-    router.replace("/accounts");
+    router.replace("/dashboard");
   };
 
   const { open, ready } = usePlaidLink({

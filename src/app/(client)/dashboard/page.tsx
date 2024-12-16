@@ -1,5 +1,5 @@
 import Identity from "@/components/Plaid/Identity";
-import Slider from "@/components/UI/Slider";
+import Slider from "@/components/UI/Changer";
 
 export default function () {
   return (

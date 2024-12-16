@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Balance from "../UI/Balance";
+import Account from "../UI/Account";
 
-export default function Balances() {
+export default function Accounts() {
   const [balances, setBalances] = useState<any>(null);
   const [total, setTotal] = useState<any>(0);
   const [accounts, setAccounts] = useState<any>(null);
@@ -57,7 +57,7 @@ export default function Balances() {
       {balances && (
         <div className="flex flex-col justify-center items-center gap-5 bg-peach p-5 rounded-md w-full">
           {balances.accounts.map((account: any) => (
-            <Balance
+            <Account
               key={account.account_id}
               account={account.name}
               mask={account.mask}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import RecurringTransactions from "../UI/RecurringTransactions";
+import RecurringTr from "../UI/RecurringTr";
 
 export default function Recurring() {
   const [recurring, setRecurring] = useState<any>(null);
@@ -44,13 +44,13 @@ export default function Recurring() {
       <h3 className="text-center mb-2">Recurring</h3>
 
       {recurring?.inflow_streams.map((transaction: any) => (
-        <RecurringTransactions
+        <RecurringTr
           transaction={transaction}
           key={transaction.transaction_ids[0]}
         />
       ))}
       {recurring?.outflow_streams.map((transaction: any) => (
-        <RecurringTransactions
+        <RecurringTr
           transaction={transaction}
           key={transaction.transaction_ids[0]}
         />

@@ -2,7 +2,7 @@ interface Props {
   transaction: any;
 }
 
-export default function RecurringTransactions({ transaction }: Props) {
+export default function RecurringTr({ transaction }: Props) {
   return (
     <div className="bg-tomato p-5 border-peach border-4 rounded-lg mb-2">
       <div className="flex justify-between items-center w-full">
