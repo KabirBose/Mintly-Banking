@@ -38,9 +38,9 @@ export default function () {
       }
 
       const data = await response.json();
-      const prompt = `Give me financial advice in a few sentences, given this data ${JSON.stringify(
+      const prompt = `Give me financial advice in a few sentences (maximum 3 sentences), given this data ${JSON.stringify(
         data
-      )}. Target my spending/transaction history and what I could do to improve.`;
+      )}. Target my spending/transaction history and what I could do to improve. Don't use filler words and jargon, just give me key insights with simple sentences.`;
       const result = await model.generateContent(prompt);
       setAnswer(result.response.text());
 
