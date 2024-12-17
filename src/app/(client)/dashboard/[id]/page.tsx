@@ -3,6 +3,7 @@
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Transaction from "@/components/UI/Transaction";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export default function () {
   const [transactions, setTransactions] = useState<any>(null);
@@ -12,6 +13,17 @@ export default function () {
   const accessToken = localStorage.getItem("access_token")
     ? JSON.parse(localStorage.getItem("access_token") as string)
     : null;
+
+  const genAI = new GoogleGenerativeAI(
+    process.env.NEXT_PUBLIC_GEMINI_API_KEY as string
+  );
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const prompt = "Explain how AI works in a sentence.";
+
+  const generatePrompt = async () => {
+    const result = await model.generateContent(prompt);
+    console.log(result.response.text());
+  };
 
   const fetchBalances = async () => {
     if (!accessToken) {
@@ -46,6 +58,7 @@ export default function () {
 
   useEffect(() => {
     fetchBalances();
+    generatePrompt();
   }, []);
 
   return (
@@ -69,8 +82,6 @@ export default function () {
             .toFixed(2)}
         </h4>
       </div>
-
-      {/* <Transactions transactions={transactions} /> */}
 
       <div className="p-5">
         <h3 className="text-center mb-2">Transactions</h3>
