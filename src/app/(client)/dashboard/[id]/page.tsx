@@ -8,6 +8,7 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 export default function () {
   const [transactions, setTransactions] = useState<any>(null);
   const [account, setAccount] = useState<any>(null);
+  const [answer, setAnswer] = useState<string | null>(null);
   const { id } = useParams();
 
   const accessToken = localStorage.getItem("access_token")
@@ -18,11 +19,12 @@ export default function () {
     process.env.NEXT_PUBLIC_GEMINI_API_KEY as string
   );
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-  const prompt = "Explain how AI works in a sentence.";
+  const prompt = "Give me financial advice in one sentence.";
 
   const generatePrompt = async () => {
     const result = await model.generateContent(prompt);
     console.log(result.response.text());
+    setAnswer(result.response.text());
   };
 
   const fetchBalances = async () => {
@@ -82,6 +84,8 @@ export default function () {
             .toFixed(2)}
         </h4>
       </div>
+
+      <h4 className="text-center p-5">{answer}</h4>
 
       <div className="p-5">
         <h3 className="text-center mb-2">Transactions</h3>
