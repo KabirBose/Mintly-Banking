@@ -19,13 +19,6 @@ export default function () {
     process.env.NEXT_PUBLIC_GEMINI_API_KEY as string
   );
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-  const prompt = "Give me financial advice in one sentence.";
-
-  const generatePrompt = async () => {
-    const result = await model.generateContent(prompt);
-    console.log(result.response.text());
-    setAnswer(result.response.text());
-  };
 
   const fetchBalances = async () => {
     if (!accessToken) {
@@ -45,6 +38,11 @@ export default function () {
       }
 
       const data = await response.json();
+      const prompt = `Give me financial advice in a few sentences, given this data ${JSON.stringify(
+        data
+      )}. Target my spending/transaction history and what I could do to improve.`;
+      const result = await model.generateContent(prompt);
+      setAnswer(result.response.text());
 
       setAccount(
         data.accounts.find((account: any) => account.account_id === id) || null
@@ -60,7 +58,6 @@ export default function () {
 
   useEffect(() => {
     fetchBalances();
-    generatePrompt();
   }, []);
 
   return (
