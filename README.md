@@ -6,7 +6,7 @@ Personal finance tool that utilizes the Plaid API to access user financial data 
 
 1. Clone this repo
 2. Run `bun install` (or use any other package manager like `npm`)
-3. Create an .env.local file consisting of your Plaid keys
+3. Create an .env.local file consisting of your Plaid keys and Gemini key
 4. Run the development server
 
 # Usage
